@@ -5,6 +5,7 @@ import {createMario} from './entities.js'
 import {createCollisionLayer, createCameraLayer} from './layers.js'
 import {setupKeyboard} from './input.js'
 
+export const ROOT = '22'
 const CANVAS = canvas
 const CONTEXT = CANVAS.getContext('2d')
 

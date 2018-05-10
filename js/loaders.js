@@ -1,6 +1,7 @@
 import Level from './Level.js'
-import Spritesheet from '/js/Spritesheet.js'
+import Spritesheet from './Spritesheet.js'
 import {createTerrainLayer, createMotionLayer} from './layers.js'
+import {ROOT} from './main.js'
 
 export function loadImage(src){
 	return new Promise(resolve => {
@@ -8,7 +9,7 @@ export function loadImage(src){
 		img.addEventListener('load', () => {
 			resolve(img)
 		})
-		img.src = src
+		img.src = `${ROOT}/img/${src}`
 	})
 }
 
@@ -18,7 +19,7 @@ export function loadJson(src){
 }
 
 export function loadSpritesheet(name){
-	return loadJson(`/sprites/${name}.json`)
+	return loadJson(`${ROOT}/sprites/${name}.json`)
 	.then(spriteSpecs => {
 		return loadImage(spriteSpecs.src)
 		.then(img => {
@@ -56,7 +57,7 @@ function createTiles(level, terrain){
 export function loadLevel(level){
 	return Promise.all([
 			loadSpritesheet('overworld'),
-			loadJson(`/levels/${level}.json`)
+			loadJson(`${ROOT}/levels/${level}.json`)
 		])
 		.then(([terrainSprite, specs]) => {
 			const level = new Level()
