@@ -18,6 +18,23 @@ export function loadJson(src){
 		.then(file => file.json())
 }
 
+export function loadCharacter(name){
+	return loadJson(`${ROOT}/sprites/${name}.json`)
+	.then(specs => {
+		return loadImage(specs.src)
+		.then(img => {
+			const sprite = new Spritesheet(img, 16, 16)
+			specs.frames.forEach(frame => {
+				sprite.preciseDefine(frame.name, ...frame.rect)
+			})
+			specs.animations.forEach(animation => {
+				sprite.defineAnimation(animation.name, animation.frameLength, animation.frames)
+			})
+			return sprite
+		})
+	})
+}
+
 export function loadSpritesheet(name){
 	return loadJson(`${ROOT}/sprites/${name}.json`)
 	.then(spriteSpecs => {

@@ -11,15 +11,15 @@ export function setupKeyboard(entity) {
 	// LEFT & RIGHT
 	keys.add('q', (press) => {
 		if (press)
-			entity.go.dir = -1
+			entity.go.left()
 		else
-			entity.go.dir = 0
+			entity.go.stop()
 	})
 	keys.add('d', (press) => {
 		if (press)
-			entity.go.dir = 1
+			entity.go.right()
 		else
-			entity.go.dir = 0
+			entity.go.stop()
 	})
 
 	// SPACE

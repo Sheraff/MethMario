@@ -4,6 +4,7 @@ export default class SpriteSheet {
 		this.tileWidth = tileWidth
 		this.tileHeight = tileHeight
 		this.tiles = new Map()
+		this.animations = new Map()
 	}
 	preciseDefine(sprite, x, y, dx, dy) {
 		let canvas = document.createElement('canvas')
@@ -28,5 +29,10 @@ export default class SpriteSheet {
 	}
 	drawTile(sprite, context, x, y) {
 		this.preciseDrawTile(sprite, context, x * this.tileWidth, y * this.tileHeight)
+	}
+	defineAnimation(name, frameLength, frames){
+		this.animations.set(name, {
+			frameLength, frames
+		})
 	}
 }

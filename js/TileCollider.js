@@ -54,9 +54,4 @@ export default class TileCollider {
 			}
 		})
 	}
-
-	test(entity){
-		const match = this.tiles.searchByPosition(entity.pos.x, entity.pos.y)
-		if(match) console.log(match.tile, match)
-	}
 }
